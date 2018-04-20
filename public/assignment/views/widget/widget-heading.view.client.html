@@ -1,0 +1,80 @@
+<nav class="navbar navbar-default navbar-fixed-top page-widget-header-footer">
+    <div class="container-fluid">
+        <p class="navbar-text pull-left">
+            <button form="editHeadingForm"
+                    ng-click="model.goBackToWidgetList()"
+                    class="navbar-link glyphicon-btn-page">
+                <span class="glyphicon glyphicon-chevron-left black-glyphicon">
+                </span>
+            </button>
+        </p>
+        <p class="navbar-text pull-right">
+            <button type="submit" form="editHeadingForm"
+                    class="navbar-link glyphicon-btn-page">
+                        <span class="glyphicon glyphicon-ok black-glyphicon">
+                        </span>
+            </button>
+        </p>
+        <div class="navbar-header">
+            <a class="navbar-brand page-widget-header-brand"
+               href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}">
+                Widget Edit
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <div ng-show="editHeadingForm.$submitted && editHeadingForm.$invalid" class="alert alert-danger" role="alert">
+        There are errors in your form
+    </div>
+    <form name="editHeadingForm" id="editHeadingForm" novalidate ng-submit="editHeadingForm.$valid && model.updateWidget(model.widget)">
+        <label for="widget_name">Name</label>
+        <input ng-model="model.widget.name"
+               type="text"
+               class="form-control"
+               id="widget_name"
+               name="widget_name"
+               placeholder="Name"
+               required>
+        <div ng-show ="editHeadingForm.$submitted && editHeadingForm.widget_name.$invalid" class="formFieldErrorMsg">
+            Name is required
+        </div>
+
+        <label for="widget_text">Text</label>
+        <input ng-model="model.widget.text"
+               type="text"
+               class="form-control"
+               id="widget_text"
+               name="widget_text"
+               placeholder="Text">
+
+        <label for="widget_size">Size</label>
+        <input ng-model="model.widget.size"
+               required
+               type="text"
+               class="form-control"
+               id="widget_size"
+               name="widget_size"
+               placeholder="Size">
+
+        <div ng-show ="editHeadingForm.$submitted && editHeadingForm.widget_size.$invalid" class="formFieldErrorMsg">
+            Size is required
+        </div>
+
+        <a class="btn btn-danger  btn-block"
+           ng-click="model.deleteWidget()">Delete</a>
+    </form>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom page-widget-header-footer">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</nav>

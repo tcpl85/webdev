@@ -1,0 +1,91 @@
+<nav class="navbar navbar-default navbar-fixed-top page-widget-header-footer">
+    <div class="container-fluid">
+        <p class="navbar-text pull-left">
+            <button form="editTextForm"
+                    ng-click="model.goBackToWidgetList()"
+                    class="navbar-link glyphicon-btn-page">
+                <span class="glyphicon glyphicon-chevron-left black-glyphicon">
+                </span>
+            </button>
+        </p>
+        <p class="navbar-text pull-right">
+            <button type="submit" form="editTextForm"
+                    class="navbar-link glyphicon-btn-page">
+                        <span class="glyphicon glyphicon-ok black-glyphicon">
+                        </span>
+            </button>
+        </p>
+        <div class="navbar-header">
+            <a class="navbar-brand page-widget-header-brand"
+               href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}">
+                Widget Edit
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <div ng-show="editTextForm.$submitted && editTextForm.$invalid" class="alert alert-danger" role="alert">
+        There are errors in your form
+    </div>
+    <form name ="editTextForm" id="editTextForm" novalidate ng-submit="editTextForm.$valid && model.updateWidget(model.widget)">
+        <label for="widget_name">Name</label>
+        <input ng-model="model.widget.name"
+               type="text"
+               class="form-control"
+               id="widget_name"
+               name="widget_name"
+               required
+               placeholder="Name">
+        <div ng-show ="editTextForm.$submitted && editTextForm.widget_name.$invalid" class="formFieldErrorMsg">
+            Name is required
+        </div>
+
+        <label for="widget_text">Text</label>
+        <input ng-model="model.widget.text"
+               type="text"
+               class="form-control"
+               id="widget_text"
+               name="widget_text"
+               placeholder="Text">
+
+        <label for="widget_rows">Rows</label>
+        <input ng-model="model.widget.rows"
+               type="number"
+               class="form-control"
+               id="widget_rows"
+               placeholder="1">
+
+        <label for="widget_placeholder">PlaceHolder</label>
+        <input ng-model="model.widget.placeholder"
+               type="text"
+               class="form-control"
+               id="widget_placeholder"
+               placeholder="Placeholder">
+
+        <div class="input-group input-group-margin">
+            <input type="text"
+                   readonly
+                   value="Formatted"
+                   class="form-control wam-white-bg"/>
+            <span class="input-group-addon">
+                    <input ng-model="model.widget.formatted"
+                           type="checkbox"/>
+                </span>
+        </div>
+
+        <a class="btn btn-danger  btn-block"
+           ng-click="model.deleteWidget()">Delete</a>
+    </form>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom page-widget-header-footer">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</nav>

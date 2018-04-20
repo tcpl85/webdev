@@ -1,0 +1,63 @@
+<nav class="navbar navbar-default navbar-fixed-top page-widget-header-footer">
+    <div class="container-fluid">
+        <p class="navbar-text pull-left">
+            <button form="editHtmlForm"
+                    ng-click="model.goBackToWidgetList()"
+                    class="navbar-link glyphicon-btn-page">
+                <span class="glyphicon glyphicon-chevron-left black-glyphicon">
+                </span>
+            </button>
+        </p>
+        <p class="navbar-text pull-right">
+            <button type="submit" form="editHtmlForm"
+                    class="navbar-link glyphicon-btn-page">
+                        <span class="glyphicon glyphicon-ok black-glyphicon">
+                        </span>
+            </button>
+        </p>
+        <div class="navbar-header">
+            <a class="navbar-brand page-widget-header-brand"
+               href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}">
+                Widget Edit
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid body-scroll">
+    <div ng-show="editHtmlForm.$submitted && editHtmlForm.$invalid" class="alert alert-danger" role="alert">
+        There are errors in your form
+    </div>
+    <form name="editHtmlForm" id="editHtmlForm" novalidate ng-submit="editHtmlForm.$valid && model.updateWidget(model.widget)">
+        <label for="widget_name">Name</label>
+        <input ng-model="model.widget.name"
+               type="text"
+               class="form-control"
+               id="widget_name"
+               name="widget_name"
+               required
+               placeholder="Name">
+        <div ng-show ="editHtmlForm.$submitted && editHtmlForm.widget_name.$invalid" class="formFieldErrorMsg">
+            Name is required
+        </div>
+        <label for="widget_html">HTML</label>
+        <div id="widget_html"
+             text-angular
+             ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],['ul','ol'], ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]"
+             ng-model="model.widget.text">
+         </div>
+        <a class="btn btn-danger  btn-block"
+           ng-click="model.deleteWidget()">Delete</a>
+    </form>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom page-widget-header-footer">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+    </div>
+</nav>

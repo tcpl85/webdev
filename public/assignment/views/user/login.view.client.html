@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <h1>Login</h1>
+    <div ng-show="!model.error && loginForm.$submitted && loginForm.$invalid" class="alert alert-danger" role="alert">
+        There are errors in your form
+    </div>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+    <form name="loginForm"  novalidate ng-submit="loginForm.$valid && model.login(user)">
+        <div class="form-group">
+            <input autocorrect="off" autocapitalize="off"
+                   ng-model="user.username"
+                   required
+                   name="username"
+                   type="text"
+                   class="form-control"
+                   id="username"
+                   placeholder="username"/>
+            </div>
+            <div ng-show ="loginForm.$submitted && loginForm.username.$invalid" class="formFieldErrorMsg">
+                Username is required
+            </div>
+
+            <input ng-model="user.password"
+                   required
+                   name="password"
+                   type="password"
+                   class="form-control"
+                   id="password"
+                   placeholder="password"/>
+            <div ng-show ="loginForm.$submitted && loginForm.password.$invalid" class="formFieldErrorMsg">
+                Password is required
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+                    Login
+            </button>
+
+            <a class="btn btn-success btn-block"
+               href="#/register">Register</a>
+        
+            <!--
+            <a href="/auth/facebook" class="btn btn-primary btn-block">
+                <span class="fa fa-facebook"></span>
+                Facebook
+            </a>
+            -->
+
+            <a href="/auth/google" class="btn btn-danger btn-block">
+                <span class="fa fa-google-plus"></span>
+                Google
+            </a>
+        </div>
+    </form>
+</div>
+

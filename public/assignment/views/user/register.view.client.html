@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <h1>Register</h1>
+    <div ng-show="!model.error && registerForm.$submitted && registerForm.$invalid" class="alert alert-danger" role="alert">
+        There are errors in your form
+    </div>
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </div>
+
+    <form name="registerForm"  novalidate ng-submit="registerForm.$valid && model.register(newUser, verifypassword)">
+        <input ng-model="newUser.username"
+               required
+               name="username"
+               type="text"
+               class="form-control"
+               placeholder="username"/>
+        <div ng-show ="registerForm.$submitted && registerForm.username.$invalid" class="formFieldErrorMsg">
+            Username is required
+        </div>
+        <input ng-model="newUser.password"
+               required
+               name="password"
+               type="password"
+               class="form-control"
+               placeholder="password"/>
+        <div ng-show ="registerForm.$submitted && registerForm.password.$invalid" class="formFieldErrorMsg">
+            Password is required
+        </div>
+        <input ng-model="verifypassword"
+               required
+               name="verify_password"
+               type="password"
+               class="form-control"
+               id="verify_password"
+               placeholder="verify password">
+        <div ng-show ="registerForm.$submitted && registerForm.verify_password.$invalid" class="formFieldErrorMsg">
+            Verify Password is required
+        </div>
+
+        <button type = "submit" class="btn btn-primary btn-block">
+            Register
+        </button>
+        <a class="btn btn-danger  btn-block"
+           href="#/login">Cancel</a>
+    </form>
+</div>

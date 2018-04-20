@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <p class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}" class="navbar-link">
+                <span class="glyphicon glyphicon-chevron-left white-glyphicon">
+                </span>
+            </a>
+        </p>
+        <p class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}/website/new" class="navbar-link">
+                <span class="glyphicon glyphicon-plus white-glyphicon">
+                </span>
+            </a>
+        </p>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/user/{{model.userId}}/website/">
+                Websites
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="container-fluid body-scroll">
+    <div ng-repeat ="website in model.websites">
+        <ul class="list-group">
+            <li class="btn btn-link btn-block btn-align-left btn-no-underline">
+                <a href="#/user/{{model.userId}}/website/{{website._id}}/page">
+                    {{website.name}}
+                </a>
+                <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}">
+                <span class="glyphicon glyphicon-user white-glyphicon"></span>
+            </a>
+        </p>
+    </div>
+</nav>

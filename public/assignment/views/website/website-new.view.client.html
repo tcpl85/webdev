@@ -1,0 +1,102 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid">
+        <div class="col-sm-4 hidden-xs">
+            <p class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left white-glyphicon">
+                    </span>
+                </a>
+            </p>
+            <p class="navbar-text pull-right">
+                <a class="navbar-link">
+                    <span class="glyphicon glyphicon-plus white-glyphicon">
+                    </span>
+                </a>
+            </p>
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    Websites
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <p class="navbar-text pull-left visible-xs">
+                <a href="#/user/{{model.userId}}/website" class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left white-glyphicon">
+                        </span>
+                </a>
+            </p>
+            <p class="navbar-text pull-right">
+
+                <button tpye ="submit"
+                      class="navbar-link glyphicon-btn"
+                      form="newWebsiteForm">
+                    <span class="glyphicon glyphicon-ok white-glyphicon">
+                    </span>
+                 </button>
+
+            </p>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#/user/{{model.userId}}/website/new">
+                    New Website
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<div class="row container-fluid">
+    <div class="col-sm-4 hidden-xs left-scroll-parent">
+        <div class="left-scroll">
+            <div ng-repeat ="website in model.websites">
+                <ul class="list-group">
+                    <li class="btn btn-link btn-block btn-align-left btn-no-underline">
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}/page">
+                            {{website.name}}
+                        </a>
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="v-divider hidden-xs"></div>
+    <div class="col-sm-8">
+        <div ng-show="newWebsiteForm.$submitted && newWebsiteForm.$invalid" class="alert alert-danger" role="alert">
+            There are errors in your form
+        </div>
+        <form name ="newWebsiteForm" id ="newWebsiteForm" novalidate ng-submit="newWebsiteForm.$valid && model.createWebsite(newWebsite)">
+            <label for="websiteName">Name</label>
+            <input ng-model = "newWebsite.name"
+                   required
+                   type="text"
+                   class="form-control"
+                   id="website_name"
+                   name="website_name"
+                   placeholder="Name">
+            <div ng-show ="newWebsiteForm.$submitted && newWebsiteForm.website_name.$invalid" class="formFieldErrorMsg">
+                Name is required
+            </div>
+            <label for="website_description">Description</label>
+            <textarea ng-model="newWebsite.description"
+                      rows="5"
+                      class="form-control"
+                      id="website_description"
+                      placeholder="Description"></textarea>
+        </form>
+    </div>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}">
+                <span class="glyphicon glyphicon-user white-glyphicon"></span>
+            </a>
+        </p>
+    </div>
+</nav>
